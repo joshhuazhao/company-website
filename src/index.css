@@ -1,0 +1,48 @@
+/* Custom styles */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom utilities */
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+/* Theme Colors */
+.bg-light-blue {
+  background-color: #e1f5fe !important;
+  /* Material Blue 50 */
+  color: #01579b !important;
+  /* Material Blue 900 */
+}
+
+.bg-light-blue .navbar-brand,
+.bg-light-blue .nav-link,
+.bg-light-blue h5,
+.bg-light-blue p,
+.bg-light-blue li a,
+.bg-light-blue a {
+  color: #01579b !important;
+}
+
+.bg-light-blue .navbar-toggler {
+  border-color: #0277bd !important;
+}
+
+.bg-light-blue .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(1, 87, 155, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}

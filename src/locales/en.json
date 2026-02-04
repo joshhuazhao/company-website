@@ -1,0 +1,54 @@
+{
+    "header": {
+        "brand": "LeanJust",
+        "home": "Home",
+        "products": "Products",
+        "services": "Services",
+        "solutions": "Solutions",
+        "resources": "Resources",
+        "about": "About",
+        "account": "Account",
+        "login": "Login",
+        "signup": "Sign Up",
+        "profile": "Profile",
+        "product_iDAP": "iDAP",
+        "product_iSMS": "iSMS"
+    },
+    "footer": {
+        "companyName": "LeanJust",
+        "slogan": "Providing innovative solutions for businesses worldwide.",
+        "quickLinks": "Quick Links",
+        "connectWithUs": "Connect With Us",
+        "email": "Email",
+        "phone": "Phone",
+        "copyright": "© 2016 - {{year}} LeanJust. All rights reserved."
+    },
+    "home": {
+        "hero": {
+            "title": "Innovative Solutions for Your Business",
+            "subtitle": "Transform your business with our cutting-edge products and services. We deliver excellence in every solution we provide.",
+            "viewProducts": "View Products",
+            "learnMore": "Learn More"
+        },
+        "features": {
+            "title": "Why Choose Us",
+            "fastReliable": {
+                "title": "Fast & Reliable",
+                "description": "Our solutions are designed for speed and reliability, ensuring your business runs smoothly 24/7."
+            },
+            "customizable": {
+                "title": "Customizable",
+                "description": "Tailor our products and services to fit your unique business needs and requirements."
+            },
+            "expertSupport": {
+                "title": "Expert Support",
+                "description": "Our dedicated team of experts is always ready to help you succeed with personalized support."
+            }
+        },
+        "cta": {
+            "title": "Ready to Get Started?",
+            "subtitle": "Discover how our solutions can help transform your business today.",
+            "button": "Explore Solutions"
+        }
+    }
+}

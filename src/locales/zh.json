@@ -1,0 +1,54 @@
+{
+    "header": {
+        "brand": "立据科技",
+        "home": "首页",
+        "products": "产品",
+        "services": "服务",
+        "solutions": "解决方案",
+        "resources": "资源",
+        "about": "关于我们",
+        "account": "账户",
+        "login": "登录",
+        "signup": "注册",
+        "profile": "个人资料",
+        "product_iDAP": "iDAP",
+        "product_iSMS": "iSMS"
+    },
+    "footer": {
+        "companyName": "立据科技",
+        "slogan": "为全球企业提供创新解决方案。",
+        "quickLinks": "快速链接",
+        "connectWithUs": "联系我们",
+        "email": "邮箱",
+        "phone": "电话",
+        "copyright": "© {{year}} 上海立据信息科技有限公司. 版权所有."
+    },
+    "home": {
+        "hero": {
+            "title": "为您的企业提供量身定制的创新解决方案",
+            "subtitle": "利用我们尖端的产品和服务转型您的业务。我们在提供的每一个解决方案中都追求卓越。",
+            "viewProducts": "查看产品",
+            "learnMore": "了解更多"
+        },
+        "features": {
+            "title": "为什么选择我们",
+            "fastReliable": {
+                "title": "快速可靠",
+                "description": "我们的解决方案专为速度和可靠性而设计，确保您的业务全天候顺畅运行。"
+            },
+            "customizable": {
+                "title": "可定制",
+                "description": "根据您的独特业务需求和要求定制我们的产品和服务。"
+            },
+            "expertSupport": {
+                "title": "专家支持",
+                "description": "我们的专业团队随时准备为您提供个性化支持，助您成功。"
+            }
+        },
+        "cta": {
+            "title": "准备好开始了吗？",
+            "subtitle": "立即探索我们的解决方案如何帮助您的业务转型。",
+            "button": "探索解决方案"
+        }
+    }
+}
