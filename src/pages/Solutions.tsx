@@ -3,8 +3,10 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Solution } from '../types';
+import { useTranslation } from 'react-i18next';
 
 const Solutions = () => {
+  const { t } = useTranslation();
   const [solutions, setSolutions] = useState<Solution[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,7 +33,7 @@ const Solutions = () => {
     return (
       <Container className="py-5 text-center">
         <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
+          <span className="visually-hidden">{t('common.loading')}</span>
         </Spinner>
       </Container>
     );
@@ -39,9 +41,9 @@ const Solutions = () => {
 
   return (
     <Container className="py-5">
-      <h1 className="mb-4">Industry Solutions</h1>
+      <h1 className="mb-4">{t('solutionsPage.title')}</h1>
       <p className="lead mb-5">
-        Tailored solutions designed specifically for your industry's unique challenges and opportunities.
+        {t('solutionsPage.subtitle')}
       </p>
 
       <Row>
@@ -54,14 +56,14 @@ const Solutions = () => {
               <Card.Body>
                 <Card.Text className="mb-4">{solution.description}</Card.Text>
 
-                <h5 className="mb-3">Key Challenges We Address:</h5>
+                <h5 className="mb-3">{t('solutionsPage.challenges')}:</h5>
                 <ListGroup variant="flush" className="mb-4">
                   {solution.challenges.map((challenge, index) => (
                     <ListGroup.Item key={index}>{challenge}</ListGroup.Item>
                   ))}
                 </ListGroup>
 
-                <h5 className="mb-3">Our Approach:</h5>
+                <h5 className="mb-3">{t('solutionsPage.approach')}:</h5>
                 <ListGroup variant="flush">
                   {solution.approach.map((item, index) => (
                     <ListGroup.Item key={index} className="border-0 ps-0">

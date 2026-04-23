@@ -43,7 +43,7 @@ const Footer = () => {
               <a href="#" className="fs-4"><FaGithub /></a>
             </div>
             <p className="mt-3">
-              {t('footer.email')}: sales@leanjust.com<br />
+              {t('footer.email')}: {t('footer.contactEmail')}<br />
               {/* {t('footer.phone')}: (555) 123-4567 */}
             </p>
           </Col>

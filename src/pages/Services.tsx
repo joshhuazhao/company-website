@@ -6,6 +6,7 @@ import { db } from '../firebase';
 import { Service } from '../types';
 import { useAuth } from '../context/AuthContext';
 import EditServiceModal from '../components/EditServiceModal';
+import { useTranslation } from 'react-i18next';
 
 const iconMap: { [key: string]: React.ReactNode } = {
   'FaCode': <FaCode />,
@@ -15,6 +16,7 @@ const iconMap: { [key: string]: React.ReactNode } = {
 };
 
 const Services = () => {
+  const { t } = useTranslation();
   const { isAdmin } = useAuth();
   const [services, setServices] = useState<(Service & { iconName?: string })[]>([]);
   const [loading, setLoading] = useState(true);
@@ -58,7 +60,7 @@ const Services = () => {
     return (
       <Container className="py-5 text-center">
         <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
+          <span className="visually-hidden">{t('common.loading')}</span>
         </Spinner>
       </Container>
     );
@@ -66,9 +68,9 @@ const Services = () => {
 
   return (
     <Container className="py-5">
-      <h1 className="mb-4">Our Services</h1>
+      <h1 className="mb-4">{t('servicesPage.title')}</h1>
       <p className="lead mb-5">
-        We offer a comprehensive suite of services to help your business thrive in the digital age.
+        {t('servicesPage.subtitle')}
       </p>
 
       <Row>
@@ -89,7 +91,7 @@ const Services = () => {
                 <Card.Title className="h3">{service.title}</Card.Title>
                 <Card.Text className="mb-3">{service.description}</Card.Text>
                 <div>
-                  <strong>What We Offer:</strong>
+                  <strong>{t('servicesPage.offerings')}:</strong>
                   <ul className="mt-2">
                     {service.offerings.map((offering, index) => (
                       <li key={index}>{offering}</li>
@@ -97,7 +99,7 @@ const Services = () => {
                   </ul>
                 </div>
                 <div className="mt-3">
-                  <strong>Benefits:</strong>
+                  <strong>{t('servicesPage.benefits')}:</strong>
                   <ul className="mt-2">
                     {service.benefits.map((benefit, index) => (
                       <li key={index}>{benefit}</li>

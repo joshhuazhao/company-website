@@ -94,13 +94,13 @@ const Products = () => {
                   <span className="h5 mb-0 text-primary">{product.price}</span>
                   <div>
                     {isAdmin && (
-                      <Button
+                    <Button
                         variant="outline-secondary"
                         size="sm"
                         className="me-2"
                         onClick={() => handleEditClick(product)}
                       >
-                        <FaEdit /> Edit
+                        <FaEdit /> {t('productsPage.edit')}
                       </Button>
                     )}
                     <Button variant="primary">{t('productsPage.learnMore')}</Button>

@@ -1,36 +1,46 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaBullseye, FaEye, FaAward } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 const About = () => {
+  const { t } = useTranslation();
   const teamMembers = [
-    { id: 1, name: 'John Smith', role: 'CEO & Founder' },
-    { id: 2, name: 'Sarah Johnson', role: 'CTO' },
-    { id: 3, name: 'Michael Brown', role: 'Head of Sales' },
-    { id: 4, name: 'Emily Davis', role: 'Lead Designer' }
+    { id: 1, name: t('aboutPage.team.1.name'), role: t('aboutPage.team.1.role') },
+    { id: 2, name: t('aboutPage.team.2.name'), role: t('aboutPage.team.2.role') },
+    { id: 3, name: t('aboutPage.team.3.name'), role: t('aboutPage.team.3.role') },
+    { id: 4, name: t('aboutPage.team.4.name'), role: t('aboutPage.team.4.role') }
   ];
 
   const values = [
-    { icon: <FaBullseye />, title: 'Innovation', description: 'We constantly push boundaries to deliver cutting-edge solutions.' },
-    { icon: <FaAward />, title: 'Excellence', description: 'We are committed to delivering the highest quality in everything we do.' },
-    { icon: <FaEye />, title: 'Integrity', description: 'We build trust through transparency and honest communication.' }
+    {
+      icon: <FaBullseye />,
+      title: t('aboutPage.values.innovation.title'),
+      description: t('aboutPage.values.innovation.description')
+    },
+    {
+      icon: <FaAward />,
+      title: t('aboutPage.values.excellence.title'),
+      description: t('aboutPage.values.excellence.description')
+    },
+    {
+      icon: <FaEye />,
+      title: t('aboutPage.values.integrity.title'),
+      description: t('aboutPage.values.integrity.description')
+    }
   ];
 
   return (
     <Container className="py-5">
       {/* Company Overview */}
       <section className="mb-5">
-        <h1 className="mb-4">About Us</h1>
+        <h1 className="mb-4">{t('aboutPage.title')}</h1>
         <Row>
           <Col lg={8}>
             <p className="lead">
-              We are a leading provider of innovative solutions that help businesses succeed in 
-              the digital era. With over a decade of experience, we've helped thousands of 
-              companies transform their operations and achieve their goals.
+              {t('aboutPage.overviewLead')}
             </p>
             <p>
-              Founded in 2014, our company has grown from a small startup to a trusted partner 
-              for businesses of all sizes. We pride ourselves on our commitment to innovation, 
-              quality, and customer satisfaction.
+              {t('aboutPage.overviewBody')}
             </p>
           </Col>
         </Row>
@@ -45,10 +55,9 @@ const About = () => {
                 <div className="text-primary mb-3" style={{ fontSize: '3rem' }}>
                   <FaBullseye />
                 </div>
-                <Card.Title className="h3">Our Mission</Card.Title>
+                <Card.Title className="h3">{t('aboutPage.missionTitle')}</Card.Title>
                 <Card.Text>
-                  To empower businesses with innovative technology solutions that drive growth, 
-                  efficiency, and success in an ever-evolving digital landscape.
+                  {t('aboutPage.missionBody')}
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -59,10 +68,9 @@ const About = () => {
                 <div className="text-primary mb-3" style={{ fontSize: '3rem' }}>
                   <FaEye />
                 </div>
-                <Card.Title className="h3">Our Vision</Card.Title>
+                <Card.Title className="h3">{t('aboutPage.visionTitle')}</Card.Title>
                 <Card.Text>
-                  To be the global leader in providing transformative technology solutions that 
-                  shape the future of business and create lasting value for our clients.
+                  {t('aboutPage.visionBody')}
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -72,7 +80,7 @@ const About = () => {
 
       {/* Core Values */}
       <section className="mb-5">
-        <h2 className="mb-4">Our Core Values</h2>
+        <h2 className="mb-4">{t('aboutPage.valuesTitle')}</h2>
         <Row>
           {values.map((value, index) => (
             <Col md={4} key={index} className="mb-4">
@@ -92,7 +100,7 @@ const About = () => {
 
       {/* Team Section */}
       <section className="mb-5">
-        <h2 className="mb-4">Our Leadership Team</h2>
+        <h2 className="mb-4">{t('aboutPage.teamTitle')}</h2>
         <Row>
           {teamMembers.map((member) => (
             <Col md={6} lg={3} key={member.id} className="mb-4">
@@ -113,19 +121,19 @@ const About = () => {
         <Row>
           <Col md={3}>
             <h2 className="display-4 fw-bold">10+</h2>
-            <p>Years in Business</p>
+            <p>{t('aboutPage.stats.years')}</p>
           </Col>
           <Col md={3}>
             <h2 className="display-4 fw-bold">5000+</h2>
-            <p>Happy Clients</p>
+            <p>{t('aboutPage.stats.clients')}</p>
           </Col>
           <Col md={3}>
             <h2 className="display-4 fw-bold">50+</h2>
-            <p>Team Members</p>
+            <p>{t('aboutPage.stats.members')}</p>
           </Col>
           <Col md={3}>
             <h2 className="display-4 fw-bold">98%</h2>
-            <p>Satisfaction Rate</p>
+            <p>{t('aboutPage.stats.satisfaction')}</p>
           </Col>
         </Row>
       </section>

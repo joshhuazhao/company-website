@@ -1,0 +1,301 @@
+{
+  "common": {
+    "loading": "Loading..."
+  },
+  "header": {
+    "brand": "LeanJust",
+    "home": "Home",
+    "products": "Products",
+    "services": "Services",
+    "solutions": "Solutions",
+    "resources": "Resources",
+    "about": "About",
+    "account": "Account",
+    "login": "Login",
+    "signup": "Sign Up",
+    "profile": "Profile",
+    "logout": "Logout",
+    "product_iDAP": "iDAP",
+    "product_iSMS": "iSMS"
+  },
+  "footer": {
+    "companyName": "LeanJust",
+    "slogan": "Providing innovative solutions for businesses worldwide.",
+    "quickLinks": "Quick Links",
+    "connectWithUs": "Connect With Us",
+    "email": "Email",
+    "phone": "Phone",
+    "contactEmail": "info@leanjust.com",
+    "copyright": "© 2016 - {{year}} LeanJust. All rights reserved."
+  },
+  "home": {
+    "hero": {
+      "title": "Innovative Solutions for Your Business",
+      "subtitle": "Transform your business with our cutting-edge products and services. We deliver excellence in every solution we provide.",
+      "viewProducts": "View Products",
+      "learnMore": "Learn More"
+    },
+    "features": {
+      "title": "Why Choose Us",
+      "fastReliable": {
+        "title": "Fast & Reliable",
+        "description": "Our solutions are designed for speed and reliability, ensuring your business runs smoothly 24/7."
+      },
+      "customizable": {
+        "title": "Customizable",
+        "description": "Tailor our products and services to fit your unique business needs and requirements."
+      },
+      "expertSupport": {
+        "title": "Expert Support",
+        "description": "Our dedicated team of experts is always ready to help you succeed with personalized support."
+      }
+    },
+    "cta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Discover how our solutions can help transform your business today.",
+      "button": "Explore Solutions"
+    }
+  },
+  "productsPage": {
+    "title": "Our Products",
+    "subtitle": "Explore our comprehensive range of products designed to meet your business needs.",
+    "featured": "Featured",
+    "keyFeatures": "Key Features",
+    "learnMore": "Learn More",
+    "edit": "Edit"
+  },
+  "servicesPage": {
+    "title": "Our Services",
+    "subtitle": "We offer a comprehensive suite of services to help your business thrive in the digital age.",
+    "offerings": "What We Offer",
+    "benefits": "Benefits"
+  },
+  "solutionsPage": {
+    "title": "Industry Solutions",
+    "subtitle": "Tailored solutions designed specifically for your industry's unique challenges and opportunities.",
+    "challenges": "Key Challenges We Address",
+    "approach": "Our Approach"
+  },
+  "resourcesPage": {
+    "title": "Resources",
+    "subtitle": "Access our library of resources including documentation, tutorials, case studies, and more.",
+    "accessResource": "Access Resource",
+    "needMoreHelp": "Need More Help?",
+    "communityForum": {
+      "title": "Community Forum",
+      "description": "Join our community to ask questions and share knowledge with other users."
+    },
+    "contactSupport": {
+      "title": "Contact Support",
+      "description": "Our support team is available 24/7 to assist you with any questions."
+    },
+    "items": {
+      "1": {
+        "title": "Getting Started Guide",
+        "description": "A comprehensive guide to help you get started with our products and services.",
+        "category": "Guide"
+      },
+      "2": {
+        "title": "API Documentation",
+        "description": "Complete API reference documentation for developers.",
+        "category": "Documentation"
+      },
+      "3": {
+        "title": "Video Tutorials",
+        "description": "Step-by-step video tutorials covering various features and use cases.",
+        "category": "Tutorial"
+      },
+      "4": {
+        "title": "Case Studies",
+        "description": "Real-world examples of how our clients achieved success with our solutions.",
+        "category": "Case Study"
+      },
+      "5": {
+        "title": "White Papers",
+        "description": "In-depth research papers on industry trends and best practices.",
+        "category": "Research"
+      },
+      "6": {
+        "title": "Best Practices Guide",
+        "description": "Learn the best practices for implementing and optimizing our solutions.",
+        "category": "Guide"
+      }
+    }
+  },
+  "aboutPage": {
+    "title": "About Us",
+    "overviewLead": "We are a leading provider of innovative solutions that help businesses succeed in the digital era. With over a decade of experience, we've helped thousands of companies transform their operations and achieve their goals.",
+    "overviewBody": "Founded in 2014, our company has grown from a small startup to a trusted partner for businesses of all sizes. We pride ourselves on our commitment to innovation, quality, and customer satisfaction.",
+    "missionTitle": "Our Mission",
+    "missionBody": "To empower businesses with innovative technology solutions that drive growth, efficiency, and success in an ever-evolving digital landscape.",
+    "visionTitle": "Our Vision",
+    "visionBody": "To be the global leader in providing transformative technology solutions that shape the future of business and create lasting value for our clients.",
+    "valuesTitle": "Our Core Values",
+    "teamTitle": "Our Leadership Team",
+    "stats": {
+      "years": "Years in Business",
+      "clients": "Happy Clients",
+      "members": "Team Members",
+      "satisfaction": "Satisfaction Rate"
+    },
+    "values": {
+      "innovation": {
+        "title": "Innovation",
+        "description": "We constantly push boundaries to deliver cutting-edge solutions."
+      },
+      "excellence": {
+        "title": "Excellence",
+        "description": "We are committed to delivering the highest quality in everything we do."
+      },
+      "integrity": {
+        "title": "Integrity",
+        "description": "We build trust through transparency and honest communication."
+      }
+    },
+    "team": {
+      "1": {
+        "name": "John Smith",
+        "role": "CEO & Founder"
+      },
+      "2": {
+        "name": "Sarah Johnson",
+        "role": "CTO"
+      },
+      "3": {
+        "name": "Michael Brown",
+        "role": "Head of Sales"
+      },
+      "4": {
+        "name": "Emily Davis",
+        "role": "Lead Designer"
+      }
+    }
+  },
+  "idapPage": {
+    "eyebrow": "Intelligent Data Analysis Platform",
+    "description": "Unlock the power of your data with iDAP. Our big data analysis platform provides deep insights, real-time processing, and predictive analytics to drive your business forward.",
+    "cta": "Request Demo",
+    "features": {
+      "analytics": {
+        "title": "Real-time Analytics",
+        "description": "Process and analyze data streams in real-time to make instant, informed decisions."
+      },
+      "infrastructure": {
+        "title": "Scalable Infrastructure",
+        "description": "Built on a robust architecture that grows with your data needs, from gigabytes to petabytes."
+      },
+      "integration": {
+        "title": "Data Integration",
+        "description": "Seamlessly integrate with various data sources, including SQL, NoSQL, and data lakes."
+      }
+    }
+  },
+  "ismsPage": {
+    "eyebrow": "Intelligent Smart Manufacturing System",
+    "description": "Revolutionize your production floor with iSMS. Connect your machines, optimize workflows, and achieve operational excellence through smart manufacturing technologies.",
+    "cta": "Learn More",
+    "features": {
+      "automation": {
+        "title": "Automated Control",
+        "description": "Advanced automation capabilities to streamline production processes and reduce manual intervention."
+      },
+      "connectivity": {
+        "title": "IoT Connectivity",
+        "description": "Seamlessly connect devices and sensors to the industrial IoT network for comprehensive monitoring."
+      },
+      "maintenance": {
+        "title": "Predictive Maintenance",
+        "description": "Use AI-driven insights to predict equipment failures before they happen, maximizing uptime."
+      }
+    }
+  },
+  "loginPage": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to continue to your account",
+    "emailLabel": "Email address",
+    "passwordLabel": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "signInButton": "Sign In",
+    "orDivider": "Or continue with",
+    "socialSignIn": "Sign in with {{provider}}",
+    "noAccount": "Don't have an account?",
+    "signUpLink": "Sign up"
+  },
+  "products": {
+    "items": {
+      "1": {
+        "name": "Enterprise Suite",
+        "category": "Software",
+        "description": "Comprehensive business management solution for large organizations.",
+        "features": [
+          "Advanced analytics and reporting",
+          "Multi-user collaboration",
+          "Cloud-based infrastructure",
+          "24/7 premium support",
+          "Custom integrations"
+        ]
+      },
+      "2": {
+        "name": "Pro Platform",
+        "category": "Software",
+        "description": "Professional-grade platform for growing businesses.",
+        "features": [
+          "Real-time data synchronization",
+          "API access",
+          "Advanced security features",
+          "Mobile app included",
+          "Email support"
+        ]
+      },
+      "3": {
+        "name": "Starter Pack",
+        "category": "Software",
+        "description": "Perfect solution for startups and small teams.",
+        "features": [
+          "Core features included",
+          "Up to 10 users",
+          "Basic reporting",
+          "Community support",
+          "Monthly updates"
+        ]
+      },
+      "4": {
+        "name": "Analytics Dashboard",
+        "category": "Analytics",
+        "description": "Powerful analytics and visualization tools for data-driven decisions.",
+        "features": [
+          "Real-time data visualization",
+          "Custom dashboards",
+          "Export capabilities",
+          "Predictive analytics",
+          "Integration ready"
+        ]
+      },
+      "5": {
+        "name": "Security Shield",
+        "category": "Security",
+        "description": "Enterprise-grade security solution to protect your business.",
+        "features": [
+          "Advanced threat detection",
+          "Real-time monitoring",
+          "Automated backups",
+          "Compliance management",
+          "Security audits"
+        ]
+      },
+      "6": {
+        "name": "Cloud Storage Pro",
+        "category": "Storage",
+        "description": "Secure and scalable cloud storage solution.",
+        "features": [
+          "5TB storage space",
+          "File versioning",
+          "Team collaboration",
+          "Advanced encryption",
+          "Cross-platform access"
+        ]
+      }
+    }
+  }
+}

@@ -1,63 +1,65 @@
 import { Container, Row, Col, Card, Badge } from 'react-bootstrap';
 import { FaFileAlt, FaBook, FaVideo, FaDownload } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 const Resources = () => {
+  const { t } = useTranslation();
   const resources = [
     {
       id: 1,
-      title: 'Getting Started Guide',
+      title: t('resourcesPage.items.1.title'),
       type: 'Documentation',
       icon: <FaBook />,
-      description: 'A comprehensive guide to help you get started with our products and services.',
-      category: 'Guide'
+      description: t('resourcesPage.items.1.description'),
+      category: t('resourcesPage.items.1.category')
     },
     {
       id: 2,
-      title: 'API Documentation',
+      title: t('resourcesPage.items.2.title'),
       type: 'Technical',
       icon: <FaFileAlt />,
-      description: 'Complete API reference documentation for developers.',
-      category: 'Documentation'
+      description: t('resourcesPage.items.2.description'),
+      category: t('resourcesPage.items.2.category')
     },
     {
       id: 3,
-      title: 'Video Tutorials',
+      title: t('resourcesPage.items.3.title'),
       type: 'Video',
       icon: <FaVideo />,
-      description: 'Step-by-step video tutorials covering various features and use cases.',
-      category: 'Tutorial'
+      description: t('resourcesPage.items.3.description'),
+      category: t('resourcesPage.items.3.category')
     },
     {
       id: 4,
-      title: 'Case Studies',
+      title: t('resourcesPage.items.4.title'),
       type: 'Case Study',
       icon: <FaFileAlt />,
-      description: 'Real-world examples of how our clients achieved success with our solutions.',
-      category: 'Case Study'
+      description: t('resourcesPage.items.4.description'),
+      category: t('resourcesPage.items.4.category')
     },
     {
       id: 5,
-      title: 'White Papers',
+      title: t('resourcesPage.items.5.title'),
       type: 'Research',
       icon: <FaDownload />,
-      description: 'In-depth research papers on industry trends and best practices.',
-      category: 'Research'
+      description: t('resourcesPage.items.5.description'),
+      category: t('resourcesPage.items.5.category')
     },
     {
       id: 6,
-      title: 'Best Practices Guide',
+      title: t('resourcesPage.items.6.title'),
       type: 'Guide',
       icon: <FaBook />,
-      description: 'Learn the best practices for implementing and optimizing our solutions.',
-      category: 'Guide'
+      description: t('resourcesPage.items.6.description'),
+      category: t('resourcesPage.items.6.category')
     }
   ];
 
   return (
     <Container className="py-5">
-      <h1 className="mb-4">Resources</h1>
+      <h1 className="mb-4">{t('resourcesPage.title')}</h1>
       <p className="lead mb-5">
-        Access our library of resources including documentation, tutorials, case studies, and more.
+        {t('resourcesPage.subtitle')}
       </p>
       
       <Row>
@@ -74,7 +76,7 @@ const Resources = () => {
                 <Card.Title>{resource.title}</Card.Title>
                 <Card.Text>{resource.description}</Card.Text>
                 <a href="#" className="btn btn-outline-primary">
-                  Access Resource
+                  {t('resourcesPage.accessResource')}
                 </a>
               </Card.Body>
             </Card>
@@ -84,15 +86,15 @@ const Resources = () => {
 
       {/* Additional Resources Section */}
       <section className="mt-5 p-4 bg-light rounded">
-        <h3 className="mb-3">Need More Help?</h3>
+        <h3 className="mb-3">{t('resourcesPage.needMoreHelp')}</h3>
         <Row>
           <Col md={6}>
-            <h5>Community Forum</h5>
-            <p>Join our community to ask questions and share knowledge with other users.</p>
+            <h5>{t('resourcesPage.communityForum.title')}</h5>
+            <p>{t('resourcesPage.communityForum.description')}</p>
           </Col>
           <Col md={6}>
-            <h5>Contact Support</h5>
-            <p>Our support team is available 24/7 to assist you with any questions.</p>
+            <h5>{t('resourcesPage.contactSupport.title')}</h5>
+            <p>{t('resourcesPage.contactSupport.description')}</p>
           </Col>
         </Row>
       </section>

@@ -1,6 +1,6 @@
 services:
   web:
-    image: joshzhao81/website:26.01 # Replace with your image name if pulling from registry
+    image: joshzhao81/website:26.02 # Replace with your image name if pulling from registry
     build: .
     ports:
       - "80:80"
@@ -8,6 +8,7 @@ services:
     restart: always
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./public/locales:/usr/share/nginx/html/locales:ro
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"

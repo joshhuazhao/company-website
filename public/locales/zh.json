@@ -1,0 +1,301 @@
+{
+  "common": {
+    "loading": "加载中..."
+  },
+  "header": {
+    "brand": "立据科技",
+    "home": "首页",
+    "products": "产品",
+    "services": "服务",
+    "solutions": "解决方案",
+    "resources": "资源",
+    "about": "关于我们",
+    "account": "账户",
+    "login": "登录",
+    "signup": "注册",
+    "profile": "个人资料",
+    "logout": "退出登录",
+    "product_iDAP": "智能数据分析平台",
+    "product_iSMS": "智能制造执行系统"
+  },
+  "footer": {
+    "companyName": "立据科技",
+    "slogan": "为全球企业提供创新解决方案。",
+    "quickLinks": "快速链接",
+    "connectWithUs": "联系我们",
+    "email": "邮箱",
+    "phone": "电话",
+    "contactEmail": "sales@leanjust.com",
+    "copyright": "© {{year}} 上海立据信息科技有限公司. 版权所有."
+  },
+  "home": {
+    "hero": {
+      "title": "为您的企业提供量身定制的创新解决方案",
+      "subtitle": "利用我们尖端的产品和服务转型您的业务。我们在提供的每一个解决方案中都追求卓越。",
+      "viewProducts": "查看产品",
+      "learnMore": "了解更多"
+    },
+    "features": {
+      "title": "为什么选择我们",
+      "fastReliable": {
+        "title": "快速可靠",
+        "description": "我们的解决方案专为速度和可靠性而设计，确保您的业务全天候顺畅运行。"
+      },
+      "customizable": {
+        "title": "可定制",
+        "description": "根据您的独特业务需求和要求定制我们的产品和服务。"
+      },
+      "expertSupport": {
+        "title": "专家支持",
+        "description": "我们的专业团队随时准备为您提供个性化支持，助您成功。"
+      }
+    },
+    "cta": {
+      "title": "准备好开始了吗？",
+      "subtitle": "立即探索我们的解决方案如何帮助您的业务转型。",
+      "button": "探索解决方案"
+    }
+  },
+  "productsPage": {
+    "title": "我们的产品",
+    "subtitle": "探索我们旨在满足您业务需求的全面产品系列。",
+    "featured": "精选",
+    "keyFeatures": "主要功能",
+    "learnMore": "了解更多",
+    "edit": "编辑"
+  },
+  "servicesPage": {
+    "title": "我们的服务",
+    "subtitle": "我们提供全面的服务组合，帮助您的业务在数字时代蓬勃发展。",
+    "offerings": "我们的服务内容",
+    "benefits": "核心收益"
+  },
+  "solutionsPage": {
+    "title": "行业解决方案",
+    "subtitle": "针对您所在行业的独特挑战与机遇量身打造的解决方案。",
+    "challenges": "我们应对的关键挑战",
+    "approach": "我们的方法"
+  },
+  "resourcesPage": {
+    "title": "资源中心",
+    "subtitle": "访问我们的资源库，包括文档、教程、案例研究等内容。",
+    "accessResource": "查看资源",
+    "needMoreHelp": "需要更多帮助？",
+    "communityForum": {
+      "title": "社区论坛",
+      "description": "加入我们的社区，提问并与其他用户分享经验。"
+    },
+    "contactSupport": {
+      "title": "联系支持",
+      "description": "我们的支持团队全天候为您提供帮助。"
+    },
+    "items": {
+      "1": {
+        "title": "快速入门指南",
+        "description": "帮助您快速开始使用我们产品和服务的完整指南。",
+        "category": "指南"
+      },
+      "2": {
+        "title": "API 文档",
+        "description": "面向开发者的完整 API 参考文档。",
+        "category": "文档"
+      },
+      "3": {
+        "title": "视频教程",
+        "description": "涵盖不同功能与使用场景的分步视频教程。",
+        "category": "教程"
+      },
+      "4": {
+        "title": "案例研究",
+        "description": "展示客户如何借助我们的解决方案取得成功的真实案例。",
+        "category": "案例"
+      },
+      "5": {
+        "title": "白皮书",
+        "description": "关于行业趋势和最佳实践的深度研究资料。",
+        "category": "研究"
+      },
+      "6": {
+        "title": "最佳实践指南",
+        "description": "学习部署和优化我们解决方案的最佳实践。",
+        "category": "指南"
+      }
+    }
+  },
+  "aboutPage": {
+    "title": "关于我们",
+    "overviewLead": "我们是创新解决方案领域的领先提供商，帮助企业在数字时代取得成功。凭借十余年的经验，我们已帮助数千家公司完成运营转型并实现业务目标。",
+    "overviewBody": "公司成立于 2014 年，已经从一家小型初创企业成长为值得信赖的合作伙伴，为各类规模的企业提供服务。我们始终以创新、质量和客户满意度为核心。",
+    "missionTitle": "我们的使命",
+    "missionBody": "通过创新技术解决方案赋能企业，在不断变化的数字化环境中推动增长、提升效率并实现成功。",
+    "visionTitle": "我们的愿景",
+    "visionBody": "成为全球领先的变革型技术解决方案提供者，塑造商业未来，并为客户创造长期价值。",
+    "valuesTitle": "我们的核心价值观",
+    "teamTitle": "管理团队",
+    "stats": {
+      "years": "经营年限",
+      "clients": "满意客户",
+      "members": "团队成员",
+      "satisfaction": "满意度"
+    },
+    "values": {
+      "innovation": {
+        "title": "创新",
+        "description": "我们不断突破边界，交付前沿解决方案。"
+      },
+      "excellence": {
+        "title": "卓越",
+        "description": "我们致力于在每一项工作中追求最高质量。"
+      },
+      "integrity": {
+        "title": "诚信",
+        "description": "我们通过透明与真诚沟通建立信任。"
+      }
+    },
+    "team": {
+      "1": {
+        "name": "John Smith",
+        "role": "首席执行官兼创始人"
+      },
+      "2": {
+        "name": "Sarah Johnson",
+        "role": "首席技术官"
+      },
+      "3": {
+        "name": "Michael Brown",
+        "role": "销售负责人"
+      },
+      "4": {
+        "name": "Emily Davis",
+        "role": "首席设计师"
+      }
+    }
+  },
+  "idapPage": {
+    "eyebrow": "智能数据分析平台",
+    "description": "借助 iDAP 释放数据价值。我们的数据分析平台提供深度洞察、实时处理与预测分析，推动业务持续增长。",
+    "cta": "申请演示",
+    "features": {
+      "analytics": {
+        "title": "实时分析",
+        "description": "实时处理和分析数据流，帮助您即时做出有依据的决策。"
+      },
+      "infrastructure": {
+        "title": "可扩展基础设施",
+        "description": "基于强大的架构构建，可随着数据规模从 GB 级扩展到 PB 级。"
+      },
+      "integration": {
+        "title": "数据集成",
+        "description": "无缝对接多种数据源，包括 SQL、NoSQL 和数据湖。"
+      }
+    }
+  },
+  "ismsPage": {
+    "eyebrow": "智能制造执行系统",
+    "description": "通过 iSMS 升级您的生产现场。连接设备、优化流程，并借助智能制造技术实现卓越运营。",
+    "cta": "了解更多",
+    "features": {
+      "automation": {
+        "title": "自动化控制",
+        "description": "通过先进的自动化能力优化生产流程，减少人工干预。"
+      },
+      "connectivity": {
+        "title": "IoT 互联",
+        "description": "无缝连接设备和传感器到工业物联网网络，实现全面监控。"
+      },
+      "maintenance": {
+        "title": "预测性维护",
+        "description": "利用 AI 驱动的洞察提前预测设备故障，最大化正常运行时间。"
+      }
+    }
+  },
+  "loginPage": {
+    "title": "欢迎回来",
+    "subtitle": "登录以继续访问您的账户",
+    "emailLabel": "电子邮件",
+    "passwordLabel": "密码",
+    "rememberMe": "记住我",
+    "forgotPassword": "忘记密码？",
+    "signInButton": "登录",
+    "orDivider": "或继续使用",
+    "socialSignIn": "使用 {{provider}} 登录",
+    "noAccount": "还没有账户？",
+    "signUpLink": "立即注册"
+  },
+  "products": {
+    "items": {
+      "1": {
+        "name": "企业套件",
+        "category": "软件",
+        "description": "面向大型企业的全面业务管理解决方案。",
+        "features": [
+          "高级分析和报告",
+          "多用户协作",
+          "基于云的基础设施",
+          "24/7 高级支持",
+          "定制集成"
+        ]
+      },
+      "2": {
+        "name": "专业平台",
+        "category": "软件",
+        "description": "面向成长型企业的专业级平台。",
+        "features": [
+          "实时数据同步",
+          "API 访问",
+          "高级安全功能",
+          "包含移动应用",
+          "电子邮件支持"
+        ]
+      },
+      "3": {
+        "name": "入门包",
+        "category": "软件",
+        "description": "初创企业和小型团队的完美解决方案。",
+        "features": [
+          "包含核心功能",
+          "最多 10 个用户",
+          "基础报告",
+          "社区支持",
+          "每月更新"
+        ]
+      },
+      "4": {
+        "name": "分析仪表板",
+        "category": "分析",
+        "description": "用于数据驱动决策的强大分析和可视化工具。",
+        "features": [
+          "实时数据可视化",
+          "自定义仪表板",
+          "导出功能",
+          "预测分析",
+          "集成就绪"
+        ]
+      },
+      "5": {
+        "name": "安全盾",
+        "category": "安全",
+        "description": "保护您业务的企业级安全解决方案。",
+        "features": [
+          "高级威胁检测",
+          "实时监控",
+          "自动备份",
+          "合规性管理",
+          "安全审计"
+        ]
+      },
+      "6": {
+        "name": "云存储专业版",
+        "category": "存储",
+        "description": "安全且可扩展的云存储解决方案。",
+        "features": [
+          "5TB 存储空间",
+          "文件版本控制",
+          "团队协作",
+          "高级加密",
+          "跨平台访问"
+        ]
+      }
+    }
+  }
+}

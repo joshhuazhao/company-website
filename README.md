@@ -87,12 +87,41 @@ company-website/
 
 ### Update Company Information
 
-1. **Company Name**: Update in `src/components/Header.jsx` and `src/components/Footer.jsx`
-2. **Contact Information**: Edit `src/components/Footer.jsx`
-3. **Products**: Modify `src/data/productsData.js`
-4. **Services**: Modify `src/data/servicesData.js`
-5. **Solutions**: Modify `src/data/solutionsData.js`
-6. **About Page**: Edit team members and company stats in `src/pages/About.jsx`
+Most site copy is now runtime-loaded from:
+
+- `public/locales/en.json`
+- `public/locales/zh.json`
+
+This includes:
+
+- Header labels and navigation text
+- Footer company/contact text
+- Home, Products, Services, Solutions, Resources, About, iDAP, and iSMS page copy
+- Login modal text
+
+If the site is running in Docker, `docker-compose.yml` mounts `./public/locales` into the Nginx container at `/usr/share/nginx/html/locales`, so you can edit those JSON files on the host without rebuilding the image.
+
+After editing a locale file, refresh the browser to see the change.
+
+### Runtime Editing Without Rebuild
+
+1. Start or restart the stack once so the new volume mount is active:
+   ```bash
+   docker compose up -d
+   ```
+
+2. Edit either:
+   ```bash
+   public/locales/en.json
+   public/locales/zh.json
+   ```
+
+3. Refresh the browser. No Docker image rebuild is required.
+
+### Structured Data Still Managed Separately
+
+- Products, Services, and Solutions list data still comes from Firestore in this app.
+- The page headings, labels, and descriptive copy around that data are now editable via the locale JSON files.
 
 ### Styling
 
