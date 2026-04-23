@@ -11,8 +11,8 @@
         "login": "登录",
         "signup": "注册",
         "profile": "个人资料",
-        "product_iDAP": "iDAP",
-        "product_iSMS": "iSMS"
+        "product_iDAP": "智能数据分析平台",
+        "product_iSMS": "智能制造执行系统"
     },
     "footer": {
         "companyName": "立据科技",
@@ -49,6 +49,102 @@
             "title": "准备好开始了吗？",
             "subtitle": "立即探索我们的解决方案如何帮助您的业务转型。",
             "button": "探索解决方案"
+        }
+    },
+    "productsPage": {
+        "title": "我们的产品",
+        "subtitle": "探索我们旨在满足您业务需求的全面产品系列。",
+        "featured": "精选",
+        "keyFeatures": "主要功能",
+        "learnMore": "了解更多"
+    },
+    "loginPage": {
+        "title": "欢迎回来",
+        "subtitle": "登录以继续访问您的账户",
+        "emailLabel": "电子邮件",
+        "passwordLabel": "密码",
+        "rememberMe": "记住我",
+        "forgotPassword": "忘记密码？",
+        "signInButton": "登录",
+        "orDivider": "或继续使用",
+        "socialSignIn": "使用 {{provider}} 登录",
+        "noAccount": "还没有账户？",
+        "signUpLink": "立即注册"
+    },
+    "products": {
+        "items": {
+            "1": {
+                "name": "企业套件",
+                "category": "软件",
+                "description": "面向大型企业的全面业务管理解决方案。",
+                "features": [
+                    "高级分析和报告",
+                    "多用户协作",
+                    "基于云的基础设施",
+                    "24/7 高级支持",
+                    "定制集成"
+                ]
+            },
+            "2": {
+                "name": "专业平台",
+                "category": "软件",
+                "description": "面向成长型企业的专业级平台。",
+                "features": [
+                    "实时数据同步",
+                    "API 访问",
+                    "高级安全功能",
+                    "包含移动应用",
+                    "电子邮件支持"
+                ]
+            },
+            "3": {
+                "name": "入门包",
+                "category": "软件",
+                "description": "初创企业和小型团队的完美解决方案。",
+                "features": [
+                    "包含核心功能",
+                    "最多 10 个用户",
+                    "基础报告",
+                    "社区支持",
+                    "每月更新"
+                ]
+            },
+            "4": {
+                "name": "分析仪表板",
+                "category": "分析",
+                "description": "用于数据驱动决策的强大分析和可视化工具。",
+                "features": [
+                    "实时数据可视化",
+                    "自定义仪表板",
+                    "导出功能",
+                    "预测分析",
+                    "集成就绪"
+                ]
+            },
+            "5": {
+                "name": "安全盾",
+                "category": "安全",
+                "description": "保护您业务的企业级安全解决方案。",
+                "features": [
+                    "高级威胁检测",
+                    "实时监控",
+                    "自动备份",
+                    "合规性管理",
+                    "安全审计"
+                ]
+            },
+            "6": {
+                "name": "云存储专业版",
+                "category": "存储",
+                "description": "安全且可扩展的云存储解决方案。",
+                "features": [
+                    "5TB 存储空间",
+                    "文件版本控制",
+                    "团队协作",
+                    "高级加密",
+                    "跨平台访问"
+                ]
+            }
         }
     }
 }

@@ -1,14 +1,33 @@
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaUserCircle, FaGlobe, FaDatabase, FaIndustry } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../context/AuthContext';
 import logo from '../assets/lj_logo_icon.png';
 
-const Header = () => {
+interface HeaderProps {
+  onLoginClick: () => void;
+}
+
+const Header = ({ onLoginClick }: HeaderProps) => {
   const { t, i18n } = useTranslation();
+  const { currentUser, isAdmin, logout } = useAuth();
+  const navigate = useNavigate();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
+  };
+
+  // handleLogin removed, using onLoginClick prop
+
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
   };
 
   return (
@@ -42,6 +61,7 @@ const Header = () => {
             <Nav.Link as={Link} to="/solutions">{t('header.solutions')}</Nav.Link>
             <Nav.Link as={Link} to="/resources">{t('header.resources')}</Nav.Link>
             <Nav.Link as={Link} to="/about">{t('header.about')}</Nav.Link>
+            {isAdmin && <Nav.Link as={Link} to="/admin" className="text-danger fw-bold">Admin</Nav.Link>}
           </Nav>
 
           <Nav>
@@ -53,12 +73,17 @@ const Header = () => {
 
               <div className="d-none d-lg-block mx-2 border-end border-secondary" style={{ height: '24px' }}></div>
 
-              <NavDropdown title={<FaUserCircle className="fs-5" />} id="basic-nav-dropdown" align="end">
-                <NavDropdown.Item href="#login">{t('header.login')}</NavDropdown.Item>
-                <NavDropdown.Item href="#register">{t('header.signup')}</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#profile">{t('header.profile')}</NavDropdown.Item>
-              </NavDropdown>
+              {currentUser ? (
+                <NavDropdown title={<><FaUserCircle className="fs-5 me-1" /> {currentUser.displayName || currentUser.email}</>} id="user-nav-dropdown" align="end">
+                  <NavDropdown.Item href="#profile">{t('header.profile')}</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={handleLogout}>{t('header.logout')}</NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <Button variant="outline-primary" onClick={onLoginClick} className="d-flex align-items-center gap-2">
+                  <FaUserCircle /> {t('header.login')}
+                </Button>
+              )}
             </div>
           </Nav>
         </Navbar.Collapse>

@@ -1,16 +1,51 @@
-import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
-import { solutionsData } from '../data/solutionsData';
+import { Container, Row, Col, Card, ListGroup, Spinner } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { db } from '../firebase';
+import { Solution } from '../types';
 
 const Solutions = () => {
+  const [solutions, setSolutions] = useState<Solution[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSolutions = async () => {
+      try {
+        const q = query(collection(db, 'solutions'), orderBy('id'));
+        const querySnapshot = await getDocs(q);
+        const solutionsList = querySnapshot.docs.map(doc => ({
+          ...doc.data()
+        })) as Solution[];
+        setSolutions(solutionsList);
+      } catch (error) {
+        console.error("Error fetching solutions:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSolutions();
+  }, []);
+
+  if (loading) {
+    return (
+      <Container className="py-5 text-center">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </Container>
+    );
+  }
+
   return (
     <Container className="py-5">
       <h1 className="mb-4">Industry Solutions</h1>
       <p className="lead mb-5">
         Tailored solutions designed specifically for your industry's unique challenges and opportunities.
       </p>
-      
+
       <Row>
-        {solutionsData.map((solution) => (
+        {solutions.map((solution) => (
           <Col lg={6} className="mb-4" key={solution.id}>
             <Card className="h-100 shadow">
               <Card.Header className="bg-primary text-white">
@@ -18,14 +53,14 @@ const Solutions = () => {
               </Card.Header>
               <Card.Body>
                 <Card.Text className="mb-4">{solution.description}</Card.Text>
-                
+
                 <h5 className="mb-3">Key Challenges We Address:</h5>
                 <ListGroup variant="flush" className="mb-4">
                   {solution.challenges.map((challenge, index) => (
                     <ListGroup.Item key={index}>{challenge}</ListGroup.Item>
                   ))}
                 </ListGroup>
-                
+
                 <h5 className="mb-3">Our Approach:</h5>
                 <ListGroup variant="flush">
                   {solution.approach.map((item, index) => (

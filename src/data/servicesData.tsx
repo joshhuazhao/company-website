@@ -1,12 +1,9 @@
-import { FaCode, FaCloud, FaShieldAlt, FaChartLine } from 'react-icons/fa';
-
 import { Service } from '../types';
-
-export const servicesData: Service[] = [
+export const servicesData: (Omit<Service, 'icon'> & { icon: string })[] = [
   {
     id: 1,
     title: 'Custom Software Development',
-    icon: <FaCode />,
+    icon: 'FaCode',
     description: 'We build tailored software solutions that perfectly align with your business requirements and goals.',
     offerings: [
       'Web application development',
@@ -25,7 +22,7 @@ export const servicesData: Service[] = [
   {
     id: 2,
     title: 'Cloud Solutions',
-    icon: <FaCloud />,
+    icon: 'FaCloud',
     description: 'Migrate your business to the cloud with our comprehensive cloud infrastructure and migration services.',
     offerings: [
       'Cloud architecture design',
@@ -44,7 +41,7 @@ export const servicesData: Service[] = [
   {
     id: 3,
     title: 'Cybersecurity Services',
-    icon: <FaShieldAlt />,
+    icon: 'FaShieldAlt',
     description: 'Protect your business from cyber threats with our comprehensive security solutions and services.',
     offerings: [
       'Security audits and assessments',
@@ -63,7 +60,7 @@ export const servicesData: Service[] = [
   {
     id: 4,
     title: 'Business Analytics',
-    icon: <FaChartLine />,
+    icon: 'FaChartLine',
     description: 'Transform your data into actionable insights with our advanced analytics and business intelligence services.',
     offerings: [
       'Data warehouse design and implementation',
