@@ -53,9 +53,45 @@ A modern, professional company website built with React and Bootstrap showcasing
 ## Available Scripts
 
 - `pnpm run dev` - Start the development server
+- `pnpm run api` - Start the PostgreSQL profile API
 - `pnpm run build` - Build for production
 - `pnpm run preview` - Preview the production build locally
 - `pnpm run lint` - Run ESLint
+
+## User Profiles and PostgreSQL
+
+Google sign-in still uses Firebase Authentication. After login, the app calls the local API at `/api/profile` and stores profile data in PostgreSQL table `market_client`.
+
+The table is created automatically by the API and is also defined in:
+
+```bash
+server/schema.sql
+```
+
+Required production environment values:
+
+```bash
+DB_PASSWORD=replace-with-a-strong-password
+FIREBASE_SERVICE_ACCOUNT_JSON='{"type":"service_account", "...":"..."}'
+```
+
+Create the Firebase service account JSON in Firebase Console:
+
+1. Project settings
+2. Service accounts
+3. Generate new private key
+
+For Docker deployment, put the values in a `.env` file beside `docker-compose.yml`, then run:
+
+```bash
+docker compose up -d --build
+```
+
+The Docker stack includes:
+
+- `web`: Nginx serving the Vite build
+- `api`: Node API that verifies Firebase ID tokens
+- `db`: PostgreSQL with the `market_client` table
 
 ## Project Structure
 

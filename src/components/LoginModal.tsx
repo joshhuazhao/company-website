@@ -19,9 +19,10 @@ const LoginModal = ({ show, onHide }: LoginModalProps) => {
             await loginWithGoogle();
             // AuthContext handles Firestore user creation
             onHide();
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error("Error signing in with Google", error);
-            alert(`Login failed: ${error.message}`);
+            const message = error instanceof Error ? error.message : 'Unknown error';
+            alert(`Login failed: ${message}`);
         }
     };
 

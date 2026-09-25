@@ -74,7 +74,7 @@ const Header = ({ onLoginClick }: HeaderProps) => {
 
               {currentUser ? (
                 <NavDropdown title={<><FaUserCircle className="fs-5 me-1" /> {currentUser.displayName || currentUser.email}</>} id="user-nav-dropdown" align="end">
-                  <NavDropdown.Item href="#profile">{t('header.profile')}</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/profile">{t('header.profile')}</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={handleLogout}>{t('header.logout')}</NavDropdown.Item>
                 </NavDropdown>

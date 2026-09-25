@@ -12,6 +12,7 @@ const AdminDashboard = () => {
                 await uploadDataIndex();
                 alert('Data uploaded successfully!');
             } catch (error) {
+                console.error('Data upload failed', error);
                 alert('Error uploading data. Check console.');
             } finally {
                 setUploading(false);

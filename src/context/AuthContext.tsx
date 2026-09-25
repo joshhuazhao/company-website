@@ -3,11 +3,30 @@ import {
     User,
     onAuthStateChanged,
     signInWithPopup,
-    signOut,
-    GoogleAuthProvider
+    signOut
 } from 'firebase/auth';
 import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
 import { auth, googleProvider, db } from '../firebase';
+
+const saveInitialProfile = async (user: User) => {
+    try {
+        const token = await user.getIdToken();
+
+        const response = await fetch('/api/profile/bootstrap', {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            console.warn('Profile bootstrap failed with status', response.status);
+        }
+    } catch (error) {
+        // Login should still succeed if the profile API is unavailable.
+        console.warn('Unable to bootstrap user profile', error);
+    }
+};
 
 interface AuthContextType {
     currentUser: User | null;
@@ -54,6 +73,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
                     createdAt: Timestamp.now(),
                 });
             }
+
+            await saveInitialProfile(user);
         } catch (error) {
             console.error("Error signing in with Google", error);
             throw error;

@@ -9,6 +9,7 @@ import About from './pages/About';
 import Idap from './pages/Idap';
 import Isms from './pages/Isms';
 import AdminDashboard from './pages/AdminDashboard';
+import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 
 import { AuthProvider } from './context/AuthContext';
@@ -27,6 +28,8 @@ function App() {
             <Route path="solutions" element={<Solutions />} />
             <Route path="resources" element={<Resources />} />
             <Route path="about" element={<About />} />
+            <Route path="profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="admin" element={<ProtectedRoute requireAdmin><AdminDashboard /></ProtectedRoute>} />
           </Route>
         </Routes>
       </Router>
