@@ -2,9 +2,10 @@ import { Container, Row, Col, Card, Button, Badge, Spinner } from 'react-bootstr
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
-import { db } from '../firebase';
+import { getDb } from '../firebase';
 import { Product } from '../types';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
+import { translateOr } from '../utils/i18n';
 import EditProductModal from '../components/EditProductModal';
 import { FaEdit } from 'react-icons/fa';
 
@@ -18,6 +19,7 @@ const Products = () => {
 
   const fetchProducts = async () => {
     try {
+      const db = await getDb();
       const q = query(collection(db, 'products'), orderBy('id'));
       const querySnapshot = await getDocs(q);
       const productsList = querySnapshot.docs.map(doc => ({
@@ -68,17 +70,17 @@ const Products = () => {
             <Card className="h-100 shadow-sm">
               <div className="bg-primary text-white d-flex align-items-center justify-content-center"
                 style={{ height: '200px' }}>
-                <h3>{t(`products.items.${product.id}.name`) !== `products.items.${product.id}.name` ? t(`products.items.${product.id}.name`) : product.name}</h3>
+                <h3>{translateOr(t, `products.items.${product.id}.name`, product.name)}</h3>
               </div>
               <Card.Body>
                 <div className="mb-2">
                   {product.featured && (
                     <Badge bg="success" className="me-2">{t('productsPage.featured')}</Badge>
                   )}
-                  <Badge bg="secondary">{t(`products.items.${product.id}.category`) !== `products.items.${product.id}.category` ? t(`products.items.${product.id}.category`) : product.category}</Badge>
+                  <Badge bg="secondary">{translateOr(t, `products.items.${product.id}.category`, product.category)}</Badge>
                 </div>
-                <Card.Title>{t(`products.items.${product.id}.name`) !== `products.items.${product.id}.name` ? t(`products.items.${product.id}.name`) : product.name}</Card.Title>
-                <Card.Text>{t(`products.items.${product.id}.description`) !== `products.items.${product.id}.description` ? t(`products.items.${product.id}.description`) : product.description}</Card.Text>
+                <Card.Title>{translateOr(t, `products.items.${product.id}.name`, product.name)}</Card.Title>
+                <Card.Text>{translateOr(t, `products.items.${product.id}.description`, product.description)}</Card.Text>
                 <div className="mb-3">
                   <strong>{t('productsPage.keyFeatures')}:</strong>
                   <ul className="mt-2">

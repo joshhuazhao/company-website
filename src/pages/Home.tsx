@@ -1,7 +1,7 @@
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { FaRocket, FaCogs, FaUsers } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import heroBg from '../assets/hero-bg.png';
+import heroBg from '../assets/hero-bg.jpg';
 import { useTranslation } from 'react-i18next';
 
 const Home = () => {

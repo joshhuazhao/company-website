@@ -1,7 +1,7 @@
 import { Container, Row, Col, Card, ListGroup, Spinner } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
-import { db } from '../firebase';
+import { getDb } from '../firebase';
 import { Solution } from '../types';
 import { useTranslation } from 'react-i18next';
 
@@ -13,6 +13,7 @@ const Solutions = () => {
   useEffect(() => {
     const fetchSolutions = async () => {
       try {
+        const db = await getDb();
         const q = query(collection(db, 'solutions'), orderBy('id'));
         const querySnapshot = await getDocs(q);
         const solutionsList = querySnapshot.docs.map(doc => ({

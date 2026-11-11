@@ -2,9 +2,9 @@ import { Container, Row, Col, Card, Spinner, Button } from 'react-bootstrap';
 import { FaCode, FaCloud, FaShieldAlt, FaChartLine, FaEdit } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
-import { db } from '../firebase';
+import { getDb } from '../firebase';
 import { Service } from '../types';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import EditServiceModal from '../components/EditServiceModal';
 import { useTranslation } from 'react-i18next';
 
@@ -25,6 +25,7 @@ const Services = () => {
 
   const fetchServices = async () => {
     try {
+      const db = await getDb();
       const q = query(collection(db, 'services'), orderBy('id'));
       const querySnapshot = await getDocs(q);
       const servicesList = querySnapshot.docs.map(doc => {

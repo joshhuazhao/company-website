@@ -7,17 +7,71 @@ const app = express();
 const port = process.env.API_PORT || 3001;
 
 app.use(express.json({ limit: '1mb' }));
+app.use((req, res, next) => {
+    res.set('X-Content-Type-Options', 'nosniff');
+    next();
+});
 
 initFirebaseAdmin();
 await initDb();
+
+// ---------------------------------------------------------------------------
+// Simple in-memory rate limiter (no external dependencies).
+// Authenticated profile traffic is per-user; health checks stay unlimited.
+// ---------------------------------------------------------------------------
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX = 60;
+const rateBuckets = new Map();
+
+function rateLimit(req, res, next) {
+    const key = req.ip || 'unknown';
+    const now = Date.now();
+    const bucket = rateBuckets.get(key) || { count: 0, resetAt: now + RATE_LIMIT_WINDOW_MS };
+
+    if (now > bucket.resetAt) {
+        bucket.count = 0;
+        bucket.resetAt = now + RATE_LIMIT_WINDOW_MS;
+    }
+
+    bucket.count += 1;
+    rateBuckets.set(key, bucket);
+
+    res.set('X-RateLimit-Limit', String(RATE_LIMIT_MAX));
+    res.set('X-RateLimit-Remaining', String(Math.max(0, RATE_LIMIT_MAX - bucket.count)));
+
+    if (bucket.count > RATE_LIMIT_MAX) {
+        return res.status(429).json({ error: 'Too many requests. Please try again later.' });
+    }
+
+    return next();
+}
+
+// Periodically prune stale buckets so the map cannot grow without bound.
+setInterval(() => {
+    const now = Date.now();
+    for (const [key, bucket] of rateBuckets) {
+        if (now > bucket.resetAt + RATE_LIMIT_WINDOW_MS) {
+            rateBuckets.delete(key);
+        }
+    }
+}, RATE_LIMIT_WINDOW_MS).unref();
+
+app.use('/api', rateLimit);
+
+const MAX_FIELD_LENGTH = 200;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function clean(value) {
   if (typeof value !== 'string') {
     return null;
   }
 
-  const trimmed = value.trim();
+  const trimmed = value.trim().slice(0, MAX_FIELD_LENGTH);
   return trimmed.length ? trimmed : null;
+}
+
+function isEmailValid(email) {
+  return typeof email === 'string' && email.length <= 254 && EMAIL_RE.test(email);
 }
 
 function splitDisplayName(displayName) {
@@ -127,9 +181,15 @@ app.put('/api/profile', requireFirebaseUser, async (req, res) => {
     country: clean(req.body.country),
   };
 
-  if (!payload.email) {
-    return res.status(400).json({ error: 'Email address is required.' });
+  // The verified e-mail from the Firebase ID token is the identity of the
+  // record; a client-supplied e-mail is never trusted or persisted.
+  const verifiedEmail = clean(req.firebaseUser.email);
+
+  if (!verifiedEmail || !isEmailValid(verifiedEmail)) {
+    return res.status(400).json({ error: 'A valid e-mail address on your Google account is required.' });
   }
+
+  payload.email = verifiedEmail;
 
   try {
     const result = await pool.query(
@@ -177,6 +237,15 @@ app.put('/api/profile', requireFirebaseUser, async (req, res) => {
     console.error('Profile update failed', error);
     res.status(500).json({ error: 'Unable to save profile.' });
   }
+});
+
+// Centralized error handler for anything that slipped through.
+app.use((err, req, res, next) => {
+  console.error('Unhandled API error', err);
+  if (res.headersSent) {
+    return next(err);
+  }
+  res.status(500).json({ error: 'Internal server error.' });
 });
 
 app.listen(port, () => {

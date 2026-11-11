@@ -1,9 +1,10 @@
-import { db } from '../firebase';
+import { getDb } from '../firebase';
 import { doc, updateDoc } from 'firebase/firestore';
 
 // Usage: Call this function with the user's UID (found in Firebase Console or logged in app)
 export const makeAdmin = async (uid: string) => {
     try {
+        const db = await getDb();
         const userRef = doc(db, 'users', uid);
         await updateDoc(userRef, {
             role: 'admin'

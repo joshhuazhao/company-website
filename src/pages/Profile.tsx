@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { Alert, Button, Card, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
 import { FaSave, FaUserCircle } from 'react-icons/fa';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 
 type ProfileForm = {
   firstName: string;
@@ -153,11 +153,13 @@ const Profile = () => {
                 </Col>
                 <Col md={6}>
                   <Form.Group controlId="profileEmail">
-                    <Form.Label>Email address</Form.Label>
+                    <Form.Label>Email address (from your Google account)</Form.Label>
                     <Form.Control
                       type="email"
                       required
                       value={form.email}
+                      readOnly
+                      plaintext
                       onChange={(event) => updateField('email', event.target.value)}
                       autoComplete="email"
                     />

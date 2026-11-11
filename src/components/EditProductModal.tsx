@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { getDb } from '../firebase';
 import { Product } from '../types';
 
 interface EditProductModalProps {
@@ -43,6 +43,7 @@ const EditProductModal = ({ show, onHide, product, onUpdate }: EditProductModalP
 
         setLoading(true);
         try {
+            const db = await getDb();
             const productRef = doc(db, 'products', product.firestoreId);
             await updateDoc(productRef, formData);
             onUpdate();

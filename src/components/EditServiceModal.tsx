@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { getDb } from '../firebase';
 import { Service } from '../types';
 
 interface EditServiceModalProps {
@@ -39,6 +39,7 @@ const EditServiceModal = ({ show, onHide, service, onUpdate }: EditServiceModalP
 
         setLoading(true);
         try {
+            const db = await getDb();
             const serviceRef = doc(db, 'services', service.firestoreId);
             const updatedData = {
                 ...formData,

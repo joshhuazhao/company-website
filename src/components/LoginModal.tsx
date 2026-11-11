@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { BsMicrosoft } from 'react-icons/bs';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 
 interface LoginModalProps {
     show: boolean;

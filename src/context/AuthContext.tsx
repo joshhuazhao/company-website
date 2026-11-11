@@ -1,12 +1,14 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { useEffect, useState, ReactNode } from 'react';
 import {
     User,
     onAuthStateChanged,
     signInWithPopup,
     signOut
 } from 'firebase/auth';
-import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
-import { auth, googleProvider, db } from '../firebase';
+import { auth, googleProvider, getDb } from '../firebase';
+import { AuthContext } from './authContextDef';
+
+export type { AuthContextType } from './authContextDef';
 
 const saveInitialProfile = async (user: User) => {
     try {
@@ -28,24 +30,7 @@ const saveInitialProfile = async (user: User) => {
     }
 };
 
-interface AuthContextType {
-    currentUser: User | null;
-    isAdmin: boolean;
-    loading: boolean;
-    loginWithGoogle: () => Promise<void>;
-    logout: () => Promise<void>;
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error('useAuth must be used within an AuthProvider');
-    }
-    return context;
-};
-
+export 
 interface AuthProviderProps {
     children: ReactNode;
 }
@@ -61,6 +46,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             const user = result.user;
 
             // Check if user exists in Firestore, if not create them
+            const { doc, getDoc, setDoc, Timestamp } = await import('firebase/firestore');
+            const db = await getDb();
             const userRef = doc(db, 'users', user.uid);
             const userSnap = await getDoc(userRef);
 
@@ -95,14 +82,22 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             setCurrentUser(user);
 
             if (user) {
-                // Fetch user role
-                const userRef = doc(db, 'users', user.uid);
-                const userSnap = await getDoc(userRef);
+                // Fetch user role. Fail closed: on any error the user is
+                // treated as a regular user and the site keeps working.
+                try {
+                    const { doc, getDoc } = await import('firebase/firestore');
+                    const db = await getDb();
+                    const userRef = doc(db, 'users', user.uid);
+                    const userSnap = await getDoc(userRef);
 
-                if (userSnap.exists()) {
-                    const userData = userSnap.data();
-                    setIsAdmin(userData.role === 'admin');
-                } else {
+                    if (userSnap.exists()) {
+                        const userData = userSnap.data();
+                        setIsAdmin(userData.role === 'admin');
+                    } else {
+                        setIsAdmin(false);
+                    }
+                } catch (error) {
+                    console.warn('Unable to fetch user role', error);
                     setIsAdmin(false);
                 }
             } else {
@@ -123,9 +118,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         logout
     };
 
+    // Render the app immediately for everyone. Public pages do not depend on
+    // auth state; only protected routes wait for `loading` (see ProtectedRoute).
     return (
         <AuthContext.Provider value={value}>
-            {!loading && children}
+            {children}
         </AuthContext.Provider>
     );
 };

@@ -20,6 +20,9 @@ dist-ssr
 data
 .pnpm-store
 
+# Microsoft Office lock files (opened documents)
+~$*
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

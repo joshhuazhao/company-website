@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import type { Firestore } from "firebase/firestore";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -11,18 +12,26 @@ const firebaseConfig = {
     storageBucket: "leanjust-website.firebasestorage.app",
     messagingSenderId: "456650590922",
     appId: "1:456650590922:web:3c8d59761aac96ddab4233",
-    measurementId: "G-PJBF8C3J5W"
+    measurementId: "G-PJBF8C3J5Y"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Firebase Authentication and get a reference to the service
+// Firebase Authentication is needed on every page (header session state),
+// so it is loaded eagerly - it is a small library.
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
 
-// Initialize Firestore
-import { getFirestore } from "firebase/firestore";
-const db = getFirestore(app);
+// Firestore is only needed on content pages and for signed-in users.
+// It is loaded on demand so anonymous visitors do not pay for it upfront.
+let dbPromise: Promise<Firestore> | null = null;
 
-export { auth, googleProvider, db };
+export const getDb = async (): Promise<Firestore> => {
+    if (!dbPromise) {
+        dbPromise = import("firebase/firestore").then(({ getFirestore }) => getFirestore(app));
+    }
+    return dbPromise;
+};
+
+export { auth, googleProvider };

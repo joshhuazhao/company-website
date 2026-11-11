@@ -2,7 +2,7 @@ import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaUserCircle, FaGlobe, FaDatabase, FaIndustry } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import logo from '../assets/lj_logo_icon.png';
 
 interface HeaderProps {
