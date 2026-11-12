@@ -1,7 +1,9 @@
 services:
   web:
     image: joshuazhao/lj-web:26.04 # Replace with your image name if pulling from registry
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "80:80"
       - "443:443"
