@@ -11,31 +11,31 @@ data_path="./data/certbot"
 email="josh.zhao@leanjust.com" # Adding a valid address is strongly recommended
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
 
-# ---------------------------------------------------------------------------
-# Pre-flight: every domain must resolve to THIS server's public IP, otherwise
-# Let's Encrypt cannot download the challenge files and issuance fails with
-# "The Certificate Authority failed to download the temporary challenge files".
-# ---------------------------------------------------------------------------
-echo "### Pre-flight: checking DNS resolution ..."
-server_ip=$(curl -s -m 10 https://api.ipify.org || true)
-if [ -z "$server_ip" ]; then
-  echo "WARNING: unable to determine this server's public IP; skipping DNS check."
-fi
-for domain in "${domains[@]}"; do
-  domain_ip=$(dig +short "$domain" 2>/dev/null | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' | tail -1)
-  if [ -n "$server_ip" ] && [ "$domain_ip" != "$server_ip" ]; then
-    echo "ERROR: $domain resolves to '${domain_ip:-no A record}' but this server's public IP is '$server_ip'."
-    echo "Let's Encrypt validation will fail. Fix the DNS records first:"
-    echo "  - point an A record for the domain to this server's IP ($server_ip)"
-    echo "  - if using Cloudflare, set the record to 'DNS only' (grey cloud):"
-    echo "    the proxy (orange cloud) hides the real IP and 'Always Use HTTPS'"
-    echo "    breaks the HTTP-01 challenge on port 80"
-    echo "  - make sure inbound port 80 is open (firewall / security group)"
-    exit 1
-  fi
-  echo "  $domain -> ${domain_ip:-unresolved} (server: $server_ip)"
-done
-echo
+# # ---------------------------------------------------------------------------
+# # Pre-flight: every domain must resolve to THIS server's public IP, otherwise
+# # Let's Encrypt cannot download the challenge files and issuance fails with
+# # "The Certificate Authority failed to download the temporary challenge files".
+# # ---------------------------------------------------------------------------
+# echo "### Pre-flight: checking DNS resolution ..."
+# server_ip=$(curl -s -m 10 https://api.ipify.org || true)
+# if [ -z "$server_ip" ]; then
+#   echo "WARNING: unable to determine this server's public IP; skipping DNS check."
+# fi
+# for domain in "${domains[@]}"; do
+#   domain_ip=$(dig +short "$domain" 2>/dev/null | grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$' | tail -1)
+#   if [ -n "$server_ip" ] && [ "$domain_ip" != "$server_ip" ]; then
+#     echo "ERROR: $domain resolves to '${domain_ip:-no A record}' but this server's public IP is '$server_ip'."
+#     echo "Let's Encrypt validation will fail. Fix the DNS records first:"
+#     echo "  - point an A record for the domain to this server's IP ($server_ip)"
+#     echo "  - if using Cloudflare, set the record to 'DNS only' (grey cloud):"
+#     echo "    the proxy (orange cloud) hides the real IP and 'Always Use HTTPS'"
+#     echo "    breaks the HTTP-01 challenge on port 80"
+#     echo "  - make sure inbound port 80 is open (firewall / security group)"
+#     exit 1
+#   fi
+#   echo "  $domain -> ${domain_ip:-unresolved} (server: $server_ip)"
+# done
+# echo
 
 mkdir -p "$data_path/conf" "$data_path/www"
 
