@@ -9,7 +9,7 @@ WORKDIR /app
 # Copy package files and install dependencies
 COPY package.json ./
 RUN pnpm approve-builds
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 # Copy source code and build
 COPY . .
 RUN pnpm build
