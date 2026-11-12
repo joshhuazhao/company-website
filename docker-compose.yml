@@ -26,7 +26,7 @@ services:
       DB_PORT: 5432
       DB_NAME: leanjust
       DB_USER: leanjust
-      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env - generate one with: openssl rand -base64 24}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env}
       FIREBASE_PROJECT_ID: leanjust-website
       FIREBASE_SERVICE_ACCOUNT_JSON: ${FIREBASE_SERVICE_ACCOUNT_JSON}
     depends_on:
