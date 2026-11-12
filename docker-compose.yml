@@ -31,7 +31,15 @@ services:
       DB_USER: leanjust
       DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env}
       FIREBASE_PROJECT_ID: leanjust-website
-      FIREBASE_SERVICE_ACCOUNT_JSON: ${FIREBASE_SERVICE_ACCOUNT_JSON}
+      # Recommended: mount the Firebase key as a file (no JSON-in-env quoting
+      # issues). Save the downloaded service-account JSON next to this file as
+      # firebase-service-account.json, uncomment the volume below, and set
+      # FIREBASE_SERVICE_ACCOUNT_FILE=/secrets/firebase-service-account.json in .env
+      FIREBASE_SERVICE_ACCOUNT_FILE: ${FIREBASE_SERVICE_ACCOUNT_FILE:-}
+      # Alternative: the JSON as one single-quoted line in .env
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${FIREBASE_SERVICE_ACCOUNT_JSON:-}
+    volumes:
+      # - ./firebase-service-account.json:/secrets/firebase-service-account.json:ro
     depends_on:
       db:
         condition: service_healthy
