@@ -4,7 +4,7 @@ RUN npm install -g pnpm@10.26.0
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml .env ./
 RUN pnpm install --frozen-lockfile --prod
 
 COPY server ./server
