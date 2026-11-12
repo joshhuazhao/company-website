@@ -39,7 +39,7 @@ services:
       # Alternative: the JSON as one single-quoted line in .env
       FIREBASE_SERVICE_ACCOUNT_JSON: ${FIREBASE_SERVICE_ACCOUNT_JSON:-}
     volumes:
-      - ./secrets/firebase-service-account.json:./firebase-service-account.json:ro
+      - ./secrets/firebase-service-account.json:/app/firebase-service-account.json:ro
     depends_on:
       db:
         condition: service_healthy
