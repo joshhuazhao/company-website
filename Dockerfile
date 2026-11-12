@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Copy package files and install dependencies
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --config.onlyBuiltDependencies=esbuild --config.onlyBuiltDependencies=protobufjs --config.onlyBuiltDependencies=@firebase/util
 
 # Copy source code and build
 COPY . .
