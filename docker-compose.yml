@@ -1,6 +1,6 @@
 services:
   web:
-    image: joshuazhao/lj-web:26.04 # Replace with your image name if pulling from registry
+    image: joshuazhao/lj-web:26.04.001 # Replace with your image name if pulling from registry
     build:
       context: .
       dockerfile: Dockerfile
@@ -18,7 +18,7 @@ services:
       - api
 
   api:
-    image: joshuazhao/lj-web-api:26.04 # Replace with your image name if pulling from registry
+    image: joshuazhao/lj-web-api:26.04.001 # Replace with your image name if pulling from registry
     build:
       context: .
       dockerfile: Dockerfile.api
