@@ -1,4 +1,4 @@
-import { Container, Row, Col, Card, Spinner, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Spinner, Button, Alert } from 'react-bootstrap';
 import { FaCode, FaCloud, FaShieldAlt, FaChartLine, FaEdit } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
@@ -20,10 +20,12 @@ const Services = () => {
   const { isAdmin } = useAuth();
   const [services, setServices] = useState<(Service & { iconName?: string })[]>([]);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
   const [editingService, setEditingService] = useState<Service | null>(null);
   const [showEditModal, setShowEditModal] = useState(false);
 
   const fetchServices = async () => {
+    setFetchError(false);
     try {
       const db = await getDb();
       const q = query(collection(db, 'services'), orderBy('id'));
@@ -39,6 +41,7 @@ const Services = () => {
       setServices(servicesList);
     } catch (error) {
       console.error("Error fetching services:", error);
+      setFetchError(true);
     } finally {
       setLoading(false);
     }
@@ -73,6 +76,20 @@ const Services = () => {
       <p className="lead mb-5">
         {t('servicesPage.subtitle')}
       </p>
+
+      {fetchError && (
+        <Alert variant="warning" className="mb-4">
+          {t('common.loadError')}{' '}
+          <Button
+            variant="outline-warning"
+            size="sm"
+            className="ms-2"
+            onClick={() => { setLoading(true); fetchServices(); }}
+          >
+            {t('common.retry')}
+          </Button>
+        </Alert>
+      )}
 
       <Row>
         {services.map((service) => (

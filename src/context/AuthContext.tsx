@@ -41,11 +41,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const [loading, setLoading] = useState(true);
 
     const loginWithGoogle = async () => {
-        try {
-            const result = await signInWithPopup(auth, googleProvider);
-            const user = result.user;
+        // 1. Authenticate - this step alone decides whether login succeeds.
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user;
 
-            // Check if user exists in Firestore, if not create them
+        // 2. Best-effort: ensure the Firestore user document (used for roles)
+        //    exists. If Firestore is unreachable (database not created in the
+        //    Firebase Console yet, or the network blocks googleapis.com),
+        //    login still succeeds - the user is simply treated as non-admin
+        //    until the connection works.
+        try {
             const { doc, getDoc, setDoc, Timestamp } = await import('firebase/firestore');
             const db = await getDb();
             const userRef = doc(db, 'users', user.uid);
@@ -60,12 +65,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
                     createdAt: Timestamp.now(),
                 });
             }
-
-            await saveInitialProfile(user);
         } catch (error) {
-            console.error("Error signing in with Google", error);
-            throw error;
+            console.warn('Signed in, but the Firestore user role document could not be updated:', error);
         }
+
+        // 3. Best-effort: create the PostgreSQL profile via the profile API.
+        await saveInitialProfile(user);
     };
 
     const logout = async () => {

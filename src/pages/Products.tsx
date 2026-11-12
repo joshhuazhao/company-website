@@ -1,4 +1,4 @@
-import { Container, Row, Col, Card, Button, Badge, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Badge, Spinner, Alert } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
@@ -14,10 +14,12 @@ const Products = () => {
   const { isAdmin } = useAuth();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [showEditModal, setShowEditModal] = useState(false);
 
   const fetchProducts = async () => {
+    setFetchError(false);
     try {
       const db = await getDb();
       const q = query(collection(db, 'products'), orderBy('id'));
@@ -29,6 +31,7 @@ const Products = () => {
       setProducts(productsList);
     } catch (error) {
       console.error("Error fetching products:", error);
+      setFetchError(true);
     } finally {
       setLoading(false);
     }
@@ -63,6 +66,20 @@ const Products = () => {
       <p className="lead mb-5">
         {t('productsPage.subtitle')}
       </p>
+
+      {fetchError && (
+        <Alert variant="warning" className="mb-4">
+          {t('common.loadError')}{' '}
+          <Button
+            variant="outline-warning"
+            size="sm"
+            className="ms-2"
+            onClick={() => { setLoading(true); fetchProducts(); }}
+          >
+            {t('common.retry')}
+          </Button>
+        </Alert>
+      )}
 
       <Row>
         {products.map((product) => (

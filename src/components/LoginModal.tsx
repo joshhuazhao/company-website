@@ -1,4 +1,5 @@
-import { Modal, Form, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { Modal, Form, Button, Alert } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
@@ -13,16 +14,30 @@ interface LoginModalProps {
 const LoginModal = ({ show, onHide }: LoginModalProps) => {
     const { t } = useTranslation();
     const { loginWithGoogle } = useAuth();
+    const [error, setError] = useState<string | null>(null);
 
     const handleGoogleLogin = async () => {
+        setError(null);
         try {
             await loginWithGoogle();
             // AuthContext handles Firestore user creation
             onHide();
         } catch (error: unknown) {
             console.error("Error signing in with Google", error);
-            const message = error instanceof Error ? error.message : 'Unknown error';
-            alert(`Login failed: ${message}`);
+            let message = error instanceof Error ? error.message : 'Unknown error';
+
+            // "client is offline" means the browser cannot reach the
+            // Firestore backend: either the database has not been created in
+            // the Firebase Console, or this network blocks Google services.
+            if (/offline/i.test(message)) {
+                message =
+                    'Sign-in reached Google successfully, but the user-data service ' +
+                    '(Firestore) could not be reached. If the problem persists, the ' +
+                    'database may not be created yet in the Firebase Console, or this ' +
+                    'network may block Google services.';
+            }
+
+            setError(message);
         }
     };
 
@@ -35,6 +50,12 @@ const LoginModal = ({ show, onHide }: LoginModalProps) => {
                     <h2 className="fw-bold mb-2">{t('loginPage.title')}</h2>
                     <p className="text-muted">{t('loginPage.subtitle')}</p>
                 </div>
+
+                {error && (
+                    <Alert variant="danger" dismissible onClose={() => setError(null)}>
+                        {error}
+                    </Alert>
+                )}
 
                 <div className="d-grid gap-2 mb-4">
                     <Button

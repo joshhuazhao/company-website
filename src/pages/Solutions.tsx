@@ -1,4 +1,4 @@
-import { Container, Row, Col, Card, ListGroup, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Card, ListGroup, Spinner, Alert, Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { getDb } from '../firebase';
@@ -9,24 +9,27 @@ const Solutions = () => {
   const { t } = useTranslation();
   const [solutions, setSolutions] = useState<Solution[]>([]);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
+
+  const fetchSolutions = async () => {
+    setFetchError(false);
+    try {
+      const db = await getDb();
+      const q = query(collection(db, 'solutions'), orderBy('id'));
+      const querySnapshot = await getDocs(q);
+      const solutionsList = querySnapshot.docs.map(doc => ({
+        ...doc.data()
+      })) as Solution[];
+      setSolutions(solutionsList);
+    } catch (error) {
+      console.error("Error fetching solutions:", error);
+      setFetchError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchSolutions = async () => {
-      try {
-        const db = await getDb();
-        const q = query(collection(db, 'solutions'), orderBy('id'));
-        const querySnapshot = await getDocs(q);
-        const solutionsList = querySnapshot.docs.map(doc => ({
-          ...doc.data()
-        })) as Solution[];
-        setSolutions(solutionsList);
-      } catch (error) {
-        console.error("Error fetching solutions:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchSolutions();
   }, []);
 
@@ -46,6 +49,20 @@ const Solutions = () => {
       <p className="lead mb-5">
         {t('solutionsPage.subtitle')}
       </p>
+
+      {fetchError && (
+        <Alert variant="warning" className="mb-4">
+          {t('common.loadError')}{' '}
+          <Button
+            variant="outline-warning"
+            size="sm"
+            className="ms-2"
+            onClick={() => { setLoading(true); fetchSolutions(); }}
+          >
+            {t('common.retry')}
+          </Button>
+        </Alert>
+      )}
 
       <Row>
         {solutions.map((solution) => (

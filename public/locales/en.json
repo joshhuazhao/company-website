@@ -1,6 +1,8 @@
 {
   "common": {
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "loadError": "Content could not be loaded. The data service may be unreachable or not yet configured. Please check your connection and try again.",
+    "retry": "Retry"
   },
   "header": {
     "brand": "LeanJust",
