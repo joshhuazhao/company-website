@@ -1,8 +1,9 @@
 # Stage 1: Build the React application
 FROM node:24-alpine AS builder
 
-# Install pnpm
-RUN npm install -g pnpm
+# Install pnpm (pinned to the same version as package.json "packageManager"
+# so dependency build-script approvals behave identically everywhere)
+RUN npm install -g pnpm@10.26.0
 
 WORKDIR /app
 
